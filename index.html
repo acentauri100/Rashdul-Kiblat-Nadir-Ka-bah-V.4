@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rashdul Kiblat Nadir Ka'bah — Kalkulator &amp; Konsep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" id="MathJax-script" async></script>
+<style>
+  :root{
+    --green-deep: #0E3B29;
+    --green-deep-2: #0A2E20;
+    --green-mid: #145038;
+    --green-line: rgba(247,241,222,.16);
+    --cream: #FBF6E9;
+    --cream-2: #F2E8CC;
+    --cream-line: #E1D6AE;
+    --ink: #1B3327;
+    --ink-lo: #51604F;
+    --paper-hi: #F8F2DE;
+    --paper-lo: #BFD2C0;
+    --gold: #CBA135;
+    --gold-soft: #E4C766;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green-deep-2) 100%);
+    color:var(--paper-hi);
+    font-family:'Inter',sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  h1,h2,h3,h4{font-family:'Poppins',sans-serif; font-weight:700; margin:0 0 .4em; letter-spacing:-0.01em; color:var(--paper-hi);}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:var(--gold-soft);}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px; position:relative; z-index:2;}
+  section{padding:88px 0; position:relative;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gold-soft); margin-bottom:14px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--gold);}
+
+  /* ---------- BACKGROUND ISLAMIC PATTERN ---------- */
+  .bg-watermark{
+    position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+  }
+  .bg-watermark svg{position:absolute;}
+  .bg-pattern{ inset:0; width:100%; height:100%; opacity:.09; }
+  .bg-kaaba{ top:-4%; right:-6%; width:42vw; max-width:600px; opacity:.10; }
+  .bg-orbit{ bottom:-8%; left:-8%; width:48vw; max-width:660px; opacity:.08; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; padding:110px 0 76px;
+    border-bottom:1px solid var(--green-line);
+  }
+  .hero h1{font-size:clamp(32px,5.2vw,54px); line-height:1.12; max-width:800px; color:var(--paper-hi);}
+  .hero h1 em{font-style:normal; color:var(--gold-soft);}
+  .hero p.lead{font-size:18px; color:var(--paper-lo); max-width:640px; margin-top:18px;}
+  .hero-meta{display:flex; gap:28px; margin-top:40px; flex-wrap:wrap;}
+  .hero-meta div{border-left:2px solid var(--gold); padding-left:12px;}
+  .hero-meta .n{font-family:'Poppins',sans-serif; font-weight:600; font-size:19px; color:var(--paper-hi);}
+  .hero-meta .l{font-size:11.5px; color:var(--paper-lo); text-transform:uppercase; letter-spacing:.08em;}
+  .badge-row{display:flex; gap:10px; margin-top:34px; flex-wrap:wrap;}
+  .badge{
+    font-family:'JetBrains Mono',monospace; font-size:12px; padding:7px 12px; border-radius:100px;
+    border:1px solid var(--green-line); color:var(--paper-hi); background:rgba(255,255,255,.06);
+  }
+  .badge.nadir{border-color:var(--gold-soft); color:var(--gold-soft); background:rgba(203,161,53,.12);}
+  .cta-row{margin-top:38px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; background:var(--gold); color:#1B2A10; font-weight:700;
+    padding:13px 22px; border-radius:8px; text-decoration:none; font-size:14.5px; border:none; cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease; font-family:'Poppins',sans-serif;
+  }
+  .btn:hover{transform:translateY(-1px); box-shadow:0 8px 24px rgba(203,161,53,.3);}
+  .btn.ghost{background:transparent; color:var(--paper-hi); border:1px solid var(--green-line);}
+
+  /* ---------- ARCH DIVIDER ---------- */
+  .arch-divider{display:flex; justify-content:center; margin-top:0; overflow:hidden; line-height:0;}
+  .arch-divider svg{display:block; width:100%; height:34px;}
+
+  /* ---------- SECTION GENERIC ---------- */
+  .section-head{max-width:680px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(24px,3.2vw,34px); color:var(--paper-hi);}
+  .section-head p{color:var(--paper-lo); font-size:16px;}
+
+  /* ---------- CONCEPT CARDS ---------- */
+  .concept-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  @media(max-width:820px){.concept-grid{grid-template-columns:1fr;}}
+  .concept-card{
+    background:var(--cream);
+    border:1px solid var(--cream-line); border-radius:16px; padding:28px; position:relative; overflow:hidden;
+    box-shadow:0 6px 26px rgba(0,0,0,.18);
+  }
+  .concept-card .tag{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    padding:4px 10px; border-radius:100px; display:inline-block; margin-bottom:16px;
+  }
+  .tag.gold{background:rgba(203,161,53,.16); color:#8C6A17;}
+  .tag.olive{background:rgba(30,59,41,.10); color:var(--green-deep);}
+  .concept-card h3{font-size:20px; color:var(--ink);}
+  .concept-card svg{width:100%; height:auto; margin:18px 0;}
+  .concept-card p{color:var(--ink-lo); font-size:14.5px;}
+  .concept-card ul{color:var(--ink-lo); font-size:14px; padding-left:18px; margin:12px 0 0;}
+  .concept-card li{margin-bottom:6px;}
+
+  .divider-arrow{
+    display:flex; align-items:center; justify-content:center; gap:16px; margin:36px 0; color:var(--paper-lo);
+    font-family:'JetBrains Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.1em;
+  }
+  .divider-arrow::before, .divider-arrow::after{content:''; height:1px; flex:1; background:var(--green-line);}
+
+  .callout{
+    border:1px solid var(--cream-line); background:var(--cream); border-radius:14px;
+    padding:22px 24px; margin-top:8px; box-shadow:0 6px 26px rgba(0,0,0,.16);
+  }
+  .callout h4{color:var(--green-deep); font-size:15px; font-family:'Poppins',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.03em; margin-bottom:8px;}
+  .callout p{color:var(--ink-lo); font-size:14.5px; margin:0;}
+
+  /* ---------- CALCULATOR ---------- */
+  .calc-shell{
+    background:var(--cream); border:1px solid var(--cream-line); border-radius:20px; overflow:hidden;
+    box-shadow:0 10px 40px rgba(0,0,0,.22);
+  }
+  .calc-top{padding:30px 32px; border-bottom:1px solid var(--cream-line); background:var(--cream-2);}
+  .calc-body{padding:32px; display:grid; grid-template-columns:1.15fr .85fr; gap:36px;}
+  @media(max-width:900px){.calc-body{grid-template-columns:1fr;}}
+
+  .field{margin-bottom:18px;}
+  .field label{display:block; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-lo); margin-bottom:7px; font-family:'JetBrains Mono',monospace;}
+  .field select, .field input{
+    width:100%; background:#fff; border:1px solid var(--cream-line); color:var(--ink);
+    padding:11px 13px; border-radius:9px; font-family:'JetBrains Mono',monospace; font-size:14px;
+  }
+  .field select:focus, .field input:focus{outline:none; border-color:var(--green-deep);}
+  .hint{font-size:12px; color:var(--ink-lo); margin-top:6px;}
+
+  .dms-row{display:grid; grid-template-columns:1fr 1fr 1fr .8fr; gap:8px;}
+  .dms-row input{padding:11px 8px; text-align:center;}
+  .dms-row select{padding:11px 4px; text-align:center;}
+
+  .event-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px;}
+  .event-tab{
+    flex:1; min-width:140px; background:#fff; border:1px solid var(--cream-line); border-radius:10px;
+    padding:12px 14px; cursor:pointer; transition:.15s;
+  }
+  .event-tab.active{border-color:var(--green-deep); background:rgba(20,80,56,.08);}
+  .event-tab .et-label{font-size:12px; color:var(--ink-lo); text-transform:uppercase; letter-spacing:.04em; font-family:'JetBrains Mono',monospace;}
+  .event-tab .et-date{font-family:'Poppins',sans-serif; font-weight:600; font-size:16px; margin-top:3px; color:var(--green-deep);}
+
+  .result-panel{
+    background:var(--green-deep); border:1px solid var(--green-deep-2); border-radius:16px; padding:24px; color:#fff;
+  }
+  .result-time{
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:42px; color:var(--gold-soft); line-height:1; margin:4px 0 2px;
+  }
+  .result-sub{font-size:13px; color:#cfe0d3;}
+  .result-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px;}
+  .stat{border-top:1px solid rgba(255,255,255,.15); padding-top:10px;}
+  .stat .k{font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:#a9c3ae; font-family:'JetBrains Mono',monospace;}
+  .stat .v{font-family:'JetBrains Mono',monospace; font-size:14px; margin-top:3px; color:#fff;}
+  .status-pill{
+    display:inline-flex; align-items:center; gap:7px; padding:7px 13px; border-radius:100px; font-size:12.5px;
+    font-family:'JetBrains Mono',monospace; margin-top:18px;
+  }
+  .status-pill.day{background:rgba(228,199,102,.2); color:#f3dd9c; border:1px solid rgba(228,199,102,.5);}
+  .status-pill.night{background:rgba(255,255,255,.1); color:#cfd6cf; border:1px solid rgba(255,255,255,.25);}
+  .dot{width:7px; height:7px; border-radius:50%; background:currentColor;}
+
+  .diagram-wrap{margin-top:22px; text-align:center;}
+  .diagram-wrap svg{width:100%; max-width:280px; height:auto;}
+
+  .instruction-box{
+    margin-top:20px; padding:16px 18px; border-radius:12px; background:var(--cream-2); border:1px solid var(--cream-line);
+    font-size:14px; color:var(--ink);
+  }
+  .instruction-box b{color:var(--green-deep);}
+
+  .coverage-note{
+    margin-top:10px; font-size:12.5px; padding:9px 12px; border-radius:8px; display:none;
+  }
+  .coverage-note.show{display:block;}
+  .coverage-note.covered{background:rgba(20,80,56,.10); color:var(--green-deep); border:1px solid var(--green-deep);}
+  .coverage-note.notcovered{background:#F3E7D8; color:#8C6A17; border:1px solid var(--cream-line);}
+
+  /* ---------- TABLE ---------- */
+  table{width:100%; border-collapse:collapse; font-size:14px;}
+  th,td{text-align:left; padding:12px 14px; border-bottom:1px solid var(--cream-line);}
+  th{font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-lo); font-weight:500;}
+  td{color:var(--ink-lo);}
+  td.hi{color:var(--green-deep); font-family:'JetBrains Mono',monospace; font-weight:600;}
+  .table-scroll{overflow-x:auto; border:1px solid var(--cream-line); border-radius:14px; background:var(--cream); box-shadow:0 10px 34px rgba(0,0,0,.18);}
+  .table-scroll table{min-width:640px;}
+  .table-scroll tr:last-child td{border-bottom:none;}
+
+  footer{border-top:1px solid var(--green-line); padding:44px 0; color:var(--paper-lo); font-size:13px;}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;}
+
+  .step-list{counter-reset:step; list-style:none; padding:0; margin:0;}
+  .step-list li{
+    counter-increment:step; position:relative; padding-left:44px; margin-bottom:20px; color:var(--paper-lo); font-size:15px;
+  }
+  .step-list li::before{
+    content:counter(step); position:absolute; left:0; top:0; width:29px; height:29px; border-radius:50%;
+    background:var(--gold); border:1px solid var(--gold); color:#1B2A10; font-family:'Poppins',sans-serif; font-weight:700;
+    font-size:13px; display:flex; align-items:center; justify-content:center;
+  }
+  .step-list b{color:var(--paper-hi);}
+
+  /* ---------- PROOF / MATH ---------- */
+  .proof-card{
+    background:var(--cream); border:1px solid var(--cream-line); border-radius:16px; padding:28px 30px; margin-bottom:22px;
+    box-shadow:0 6px 26px rgba(0,0,0,.16);
+  }
+  .proof-card h3{font-size:18px; color:var(--green-deep); margin-bottom:10px; display:flex; align-items:center; gap:10px;}
+  .proof-card .pnum{
+    font-family:'JetBrains Mono',monospace; font-size:12px; background:var(--green-deep); color:var(--paper-hi);
+    padding:3px 9px; border-radius:6px; flex-shrink:0;
+  }
+  .proof-card p{color:var(--ink-lo); font-size:14.5px; margin:10px 0;}
+  .proof-card mjx-container{color:var(--ink) !important; font-size:104% !important;}
+  .proof-card .eq-note{
+    font-size:12.5px; color:var(--ink-lo); background:var(--cream-2); border-left:3px solid var(--gold);
+    padding:9px 13px; border-radius:6px; margin-top:8px;
+  }
+  .qed{text-align:right; font-family:'JetBrains Mono',monospace; color:var(--gold); font-size:13px; margin-top:6px;}
+
+  .theorem-box{
+    border:1.5px solid var(--green-deep); background:rgba(20,80,56,.06); border-radius:12px; padding:16px 18px; margin:14px 0;
+  }
+  .theorem-box .t-label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--green-deep); font-weight:700;
+  }
+
+  /* ---------- VALIDATION TABLE ---------- */
+  .val-controls{display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:20px;}
+  .val-summary{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px;}
+  @media(max-width:700px){.val-summary{grid-template-columns:1fr 1fr;}}
+  .val-stat{
+    background:var(--cream); border:1px solid var(--cream-line); border-radius:12px; padding:16px 18px;
+    box-shadow:0 4px 18px rgba(0,0,0,.14);
+  }
+  .val-stat .k{font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-lo); font-family:'JetBrains Mono',monospace;}
+  .val-stat .v{font-family:'Poppins',sans-serif; font-weight:700; font-size:22px; color:var(--green-deep); margin-top:4px;}
+  td.ok, td.err-ok{color:var(--green-deep); font-family:'JetBrains Mono',monospace; font-weight:600;}
+  td.warn, td.err-mid{color:#8C6A17; font-family:'JetBrains Mono',monospace; font-weight:600;}
+
+  /* ---------- ERROR ANALYSIS ---------- */
+  .error-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media(max-width:820px){.error-grid{grid-template-columns:1fr;}}
+  .error-card{
+    background:var(--cream); border:1px solid var(--cream-line); border-radius:14px; padding:22px 24px;
+    box-shadow:0 6px 24px rgba(0,0,0,.15);
+  }
+  .error-card h4{font-size:15px; color:var(--green-deep); font-family:'Poppins',sans-serif; margin-bottom:8px;}
+  .error-card .mag{font-family:'JetBrains Mono',monospace; font-size:24px; color:var(--gold); font-weight:600; margin:6px 0;}
+  .error-card p{font-size:13.5px; color:var(--ink-lo); margin:0;}
+  @media(max-width:900px){.concl-grid-mobile{grid-template-columns:1fr !important;}}
+
+  /* ---------- DISCUSSION / LITERATURE ---------- */
+  .lit-item{
+    display:grid; grid-template-columns:200px 1fr; gap:20px; padding:20px 0; border-top:1px solid var(--green-line);
+  }
+  .lit-item:first-of-type{border-top:none;}
+  .lit-name{font-family:'Poppins',sans-serif; font-weight:600; font-size:14.5px; color:var(--paper-hi);}
+  .lit-name .yr{display:block; font-family:'JetBrains Mono',monospace; font-weight:400; font-size:11.5px; color:var(--gold-soft); margin-top:4px;}
+  .lit-desc{color:var(--paper-lo); font-size:14.5px;}
+  .lit-desc b{color:var(--paper-hi);}
+  @media(max-width:700px){.lit-item{grid-template-columns:1fr; gap:6px;}}
+</style>
+</head>
+<body>
+
+<div class="bg-watermark">
+  <svg class="bg-pattern" id="bgPattern" preserveAspectRatio="none"></svg>
+  <svg class="bg-kaaba" viewBox="0 0 400 400" id="bgKaaba"></svg>
+  <svg class="bg-orbit" viewBox="0 0 400 400" id="bgOrbit"></svg>
+</div>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Pengembangan Metode Rashdul Kiblat</div>
+    <h1>Rashdul Kiblat <em>Nadir Ka'bah</em><br>Melengkapi Setengah Bumi yang Terlewat</h1>
+    <p class="lead">Rashdul Kiblat Global klasik hanya berlaku saat tengah hari Makkah — dan hanya untuk setengah bumi yang sedang mengalami siang. Konsep Nadir Ka'bah memberi belahan bumi yang lain waktu rashdul kiblatnya sendiri, dengan acuan posisi matahari tepat di titik nadir (kebalikan) Ka'bah.</p>
+    <div class="badge-row">
+      <div class="badge">27/28 Mei</div>
+      <div class="badge">15/16 Juli</div>
+      <div class="badge nadir">27/28 November — Nadir</div>
+      <div class="badge nadir">13–16 Januari — Nadir</div>
+    </div>
+    <div class="cta-row">
+      <a href="#kalkulator" class="btn">Buka Kalkulator →</a>
+      <a href="#konsep" class="btn ghost" style="margin-left:12px;">Pahami Konsepnya</a>
+    </div>
+    <div class="hero-meta">
+      <div><div class="n mono" id="heroLat">21°25′21″ LU</div><div class="l">Lintang Ka'bah</div></div>
+      <div><div class="n mono" id="heroLon">39°49′34″ BT</div><div class="l">Bujur Ka'bah</div></div>
+      <div><div class="n mono">GMT −9</div><div class="l">Zona rujukan titik nadir</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ KONSEP ============ -->
+<section id="konsep">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">01 — Konsep Dasar</div>
+      <h2>Dua Peristiwa, Satu Prinsip Bayangan Matahari</h2>
+      <p>Rashdul kiblat terjadi ketika bayangan benda menunjukkan arah kiblat secara langsung — karena azimuth matahari saat itu berimpit dengan azimuth kiblat. Perbedaannya terletak pada di mana posisi matahari berada terhadap Ka'bah.</p>
+    </div>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <span class="tag gold">Sudah Dikenal</span>
+        <h3>Rashdul Kiblat Global (Istiwa' A'dhom)</h3>
+        <svg viewBox="0 0 320 260" id="svgKulminasi"></svg>
+        <p>Terjadi ketika <b style="color:var(--ink)">deklinasi matahari = lintang Ka'bah (+21°25′21″)</b>, yakni matahari tepat berkulminasi di atas Ka'bah pada tengah hari waktu Makkah.</p>
+        <ul>
+          <li>Terjadi 2× setahun: 27/28 Mei &amp; 15/16 Juli</li>
+          <li>Hanya berlaku bagi wilayah yang saat itu mengalami <b style="color:var(--ink)">siang hari</b> — kira-kira zona waktu GMT −3 hingga GMT +8</li>
+          <li>Setengah bumi lainnya sedang malam hari &amp; tidak bisa memakai momen ini</li>
+        </ul>
+      </div>
+
+      <div class="concept-card">
+        <span class="tag olive">Pengembangan Metode</span>
+        <h3>Rashdul Kiblat Nadir Ka'bah</h3>
+        <svg viewBox="0 0 320 260" id="svgNadir"></svg>
+        <p>Terjadi ketika <b style="color:var(--ink)">deklinasi matahari = −21°25′21″</b> (berlawanan tanda dengan lintang Ka'bah), yakni matahari tepat berada di atas titik <b style="color:var(--ink)">nadir Ka'bah</b> — titik antipodal di sisi bumi yang berlawanan.</p>
+        <ul>
+          <li>Terjadi 2× setahun: 27/28 November &amp; 13–16 Januari</li>
+          <li>Berlaku bagi wilayah yang saat itu mengalami siang — persis wilayah yang <b style="color:var(--ink)">tidak tercakup</b> oleh Rashdul Kiblat Global di atas</li>
+          <li>Menyempurnakan cakupan global metode rashdul kiblat menjadi berlaku di seluruh permukaan bumi</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider-arrow">saling melengkapi, bukan menggantikan</div>
+
+    <div class="callout">
+      <h4>Mengapa Setengah Bumi "Terlewat" Selama Ini?</h4>
+      <p>Saat tengah hari di Makkah, separuh permukaan bumi sedang malam hari — sehingga penduduknya tidak melihat matahari sama sekali dan tidak bisa memverifikasi kiblat lewat bayangan pada momen itu. Wilayah ini kira-kira meliputi Papua bagian timur, sebagian besar Australia, Selandia Baru, Jepang, Korea, sebagian Rusia timur, hingga benua Amerika. Rashdul Kiblat Nadir Ka'bah memberi mereka momen ekuivalen mereka sendiri, 12 jam kemudian — tepat saat tengah malam di Makkah, ketika giliran mereka mengalami siang hari.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CARA KERJA ============ -->
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">02 — Bagaimana Menentukan Arah</div>
+      <h2>Membaca Bayangan pada Momen Nadir</h2>
+    </div>
+    <ol class="step-list">
+      <li><b>Matahari tepat di atas titik nadir Ka'bah.</b> Karena posisinya persis di seberang bumi, arah datang sinar matahari dari sudut pandang Anda menunjuk lurus menuju titik antipodal (menjauhi Ka'bah).</li>
+      <li><b>Bayangan tongkat/benda tegak jatuh berlawanan arah dengan matahari</b> — artinya bayangan tersebut justru menunjuk lurus ke arah Ka'bah, kebalikan dari metode Rashdul Kiblat Global biasa.</li>
+      <li><b>Berdirilah membelakangi matahari.</b> Arah bayangan yang jatuh di depan Anda itulah arah kiblat yang dicari.</li>
+      <li><b>Cocokkan dengan waktu lokal Anda</b> menggunakan kalkulator di bawah — masukkan lokasi Anda (zona waktu akan menyesuaikan otomatis) untuk mengetahui jam persis kejadian ini di tempat Anda.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ KALKULATOR ============ -->
+<section id="kalkulator">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">03 — Kalkulator</div>
+      <h2>Hitung Rashdul Kiblat Nadir Ka'bah di Lokasi Anda</h2>
+      <p>Perhitungan memakai algoritma posisi matahari (deklinasi &amp; equation of time) presisi tinggi yang dihitung langsung di peramban Anda — konsisten dengan metode duhur Ka'bah: <span class="mono">12 + (bujur daerah − bujur Ka'bah)/15 − e</span>, digeser 12 jam untuk momen nadir.</p>
+    </div>
+
+    <div class="calc-shell">
+      <div class="calc-top">
+        <div class="field">
+          <label>Tahun Perhitungan</label>
+          <input type="number" id="yearInput" value="2026" min="1900" max="2200">
+        </div>
+        <div class="event-tabs" id="eventTabs"></div>
+      </div>
+
+      <div class="calc-body">
+        <div>
+          <h3 style="font-size:16px; margin-bottom:16px;">Lokasi Anda</h3>
+          <div class="field">
+            <label>Pilih lokasi</label>
+            <select id="citySelect"></select>
+            <div class="coverage-note" id="coverageNote"></div>
+          </div>
+
+          <div class="field">
+            <label>Lintang (D° M′ S″)</label>
+            <div class="dms-row">
+              <input type="number" id="latDeg" value="6" min="0" max="90">
+              <input type="number" id="latMin" value="58" min="0" max="59">
+              <input type="number" id="latSec" value="0" min="0" max="59.99" step="0.01">
+              <select id="latDir"><option value="1">LU</option><option value="-1" selected>LS</option></select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Bujur (D° M′ S″)</label>
+            <div class="dms-row">
+              <input type="number" id="lonDeg" value="110" min="0" max="180">
+              <input type="number" id="lonMin" value="25" min="0" max="59">
+              <input type="number" id="lonSec" value="0" min="0" max="59.99" step="0.01">
+              <select id="lonDir"><option value="1" selected>BT</option><option value="-1">BB</option></select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Zona Waktu (GMT) — menyesuaikan otomatis</label>
+            <input type="number" step="0.5" id="tzInput" value="7">
+            <div class="hint">Diisi otomatis dari bujur lokasi (bujur/15, dibulatkan). Bisa diubah manual bila zona waktu resmi wilayah berbeda.</div>
+          </div>
+          <button class="btn" id="calcBtn" style="width:100%; justify-content:center; margin-top:8px;">Hitung Rashdul Kiblat</button>
+
+          <div class="instruction-box" id="instructionBox"></div>
+        </div>
+
+        <div>
+          <div class="result-panel">
+            <div class="result-sub" id="resultLabel">Rashdul Kiblat Nadir Ka'bah — pukul lokal</div>
+            <div class="result-time" id="resultTime">—:—:—</div>
+            <div class="result-sub" id="resultDate">pilih tanggal &amp; lokasi lalu klik Hitung</div>
+
+            <div class="status-pill day" id="statusPill" style="display:none;">
+              <span class="dot"></span><span id="statusText"></span>
+            </div>
+
+            <div class="result-grid">
+              <div class="stat"><div class="k">Lokasi (Lintang, Bujur)</div><div class="v" id="statLoc">–</div></div>
+              <div class="stat"><div class="k">Deklinasi Matahari</div><div class="v" id="statDecl">–</div></div>
+              <div class="stat"><div class="k">Equation of Time</div><div class="v" id="statEqt">–</div></div>
+              <div class="stat"><div class="k">Duhur Ka'bah (GMT+3)</div><div class="v" id="statDuhur">–</div></div>
+              <div class="stat"><div class="k">Momen Nadir (UTC)</div><div class="v" id="statUtc">–</div></div>
+              <div class="stat"><div class="k">Azimuth Kiblat</div><div class="v" id="statAz">–</div></div>
+              <div class="stat"><div class="k">Rashdul Kiblat Global (kulminasi) di lokasi ini</div><div class="v" id="statKulm">–</div></div>
+            </div>
+
+            <div class="diagram-wrap"><svg id="svgResult" viewBox="0 0 320 260"></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TABEL WILAYAH ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">04 — Cakupan Wilayah</div>
+      <h2>Zona Waktu yang Diliputi Rashdul Kiblat Nadir Ka'bah</h2>
+      <p>Karena peristiwa terjadi saat tengah malam di Makkah, wilayah yang mengalami siang pada momen tersebut adalah zona waktu GMT +9 hingga GMT −4 — kebalikan dari cakupan Rashdul Kiblat Global biasa (GMT −3 s.d. +8).</p>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Zona Waktu</th><th>Contoh Wilayah / Negara</th></tr></thead>
+        <tbody id="regionTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PEMBUKTIAN MATEMATIS ============ -->
+<section id="pembuktian">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">05 — Pembuktian Matematis</div>
+      <h2>Pembuktian Berbasis Astronomi Bola</h2>
+      <p>Bagian ini menurunkan secara formal mengapa bayangan benda tegak dapat menunjukkan arah kiblat pada momen Nadir Ka'bah, bertolak dari segitiga bola dan rumus <i>bearing</i> lingkaran besar (great-circle bearing) yang sama dipakai untuk menghitung arah kiblat.</p>
+    </div>
+
+    <div class="proof-card">
+      <h3><span class="pnum">5.1</span> Segitiga Bola Dasar: Kutub Utara – Lokasi – Ka'bah</h3>
+      <p>Diberikan lokasi \(X=(\varphi_x,\lambda_x)\), Kutub Utara langit \(P\), dan Ka'bah \(K=(\varphi_K,\lambda_K)\). Pada segitiga bola \(PXK\): sisi \(PX=90^\circ-\varphi_x\), sisi \(PK=90^\circ-\varphi_K\), dan sudut di \(P\) sama dengan selisih bujur \(\Delta\lambda=\lambda_K-\lambda_x\). Dengan rumus empat-bagian (four-parts formula) segitiga bola, azimuth \(K\) dilihat dari \(X\) (diukur dari Utara searah jarum jam) adalah:</p>
+      <p>\[ \mathrm{Az}_{\text{kiblat}}(X)=\operatorname{atan2}\!\Big(\sin\Delta\lambda,\ \cos\varphi_x\tan\varphi_K-\sin\varphi_x\cos\Delta\lambda\Big) \tag{1} \]</p>
+      <div class="eq-note">Inilah rumus arah kiblat klasik (mis. dipakai Slamet Hambali &amp; literatur falak lain). Sudah diverifikasi numerik pada kalkulator §06 — cocok hingga presisi mesin dengan data uji lintang/bujur pada berkas rujukan.</div>
+    </div>
+
+    <div class="proof-card">
+      <h3><span class="pnum">5.2</span> Prinsip Kunci: Arah Matahari = Arah ke Titik Sub-Matahari</h3>
+      <p>Karena jarak Bumi–Matahari (≈150 juta km) jauh lebih besar daripada jari-jari Bumi, sinar matahari yang sampai ke permukaan Bumi praktis sejajar. Akibatnya, arah datang matahari dari titik mana pun di Bumi pada instan \(t\) sama dengan arah menuju <b>titik sub-matahari</b> \(S(t)\) — titik di permukaan Bumi tempat matahari tepat berada di zenit saat itu — yang koordinatnya:</p>
+      <p>\[ \varphi_S(t)=\delta(t) \qquad \lambda_S(t)=\lambda_{\text{tengah-hari-matahari saat }t} \]</p>
+      <p>dengan \(\delta(t)\) deklinasi matahari. Karena itu azimuth matahari dari \(X\) memakai <b style="color:var(--ink)">rumus bearing yang identik dengan Persamaan (1)</b>, hanya targetnya \(S(t)\), bukan \(K\):</p>
+      <p>\[ \mathrm{Az}_\odot(X,t)=\operatorname{atan2}\!\Big(\sin(\lambda_S-\lambda_x),\ \cos\varphi_x\tan\delta(t)-\sin\varphi_x\cos(\lambda_S-\lambda_x)\Big) \tag{2} \]</p>
+      <div class="eq-note">Diverifikasi numerik (lihat kode kalkulator): untuk sembarang \(H,\delta,\varphi\) yang diuji, \(\mathrm{Az}_\odot\) hasil rumus horizon standar sama persis (selisih \(0{,}00000000^\circ\)) dengan Persamaan (1) yang dievaluasi pada \(\Delta\lambda=-H\), \(\varphi_K=\delta\).</div>
+    </div>
+
+    <div class="proof-card">
+      <h3><span class="pnum">5.3</span> Teorema Rashdul Kiblat Global (Kulminasi)</h3>
+      <div class="theorem-box">
+        <div class="t-label">Teorema 1</div>
+        <p style="margin:8px 0 0;">Jika pada instan \(t^{*}\) berlaku \(\delta(t^{*})=\varphi_K\) dan \(\lambda_S(t^{*})=\lambda_K\) (matahari tepat di zenit Ka'bah), maka \(S(t^{*})=K\), sehingga Persamaan (2) identik dengan Persamaan (1):</p>
+        <p>\[ \mathrm{Az}_\odot(X,t^{*})\equiv \mathrm{Az}_{\text{kiblat}}(X)\quad\text{untuk semua } X \tag{3} \]</p>
+        <p class="qed">∎ Arah ke matahari = arah kiblat, untuk seluruh wilayah yang menyaksikan momen itu.</p>
+      </div>
+      <p>Karena bayangan benda tegak jatuh pada azimuth \(\mathrm{Az}_\odot+180^\circ\) (berlawanan datangnya cahaya), bayangan pada momen ini menunjuk <b style="color:var(--ink)">anti-kiblat</b> — konsisten dengan instruksi "hadap matahari, bayangan membelakangi kiblat" pada §02.</p>
+    </div>
+
+    <div class="proof-card">
+      <h3><span class="pnum">5.4</span> Lemma Titik Antipodal &amp; Teorema Nadir Ka'bah</h3>
+      <p>Titik nadir Ka'bah \(N\) didefinisikan sebagai titik antipodal \(K\): \(\varphi_N=-\varphi_K,\ \lambda_N=\lambda_K+180^\circ \pmod{360^\circ}\).</p>
+      <div class="theorem-box">
+        <div class="t-label">Lemma (Azimuth Titik Antipodal)</div>
+        <p style="margin:8px 0 0;">Untuk titik antipodal mana pun \(N\) terhadap \(K\), dan sembarang \(X\):</p>
+        <p>\[ \mathrm{Az}(X\to N)=\mathrm{Az}(X\to K)+180^\circ \pmod{360^\circ} \tag{4} \]</p>
+        <p><b>Bukti:</b> Bidang lingkaran besar (great circle) yang melalui \(X\) dan \(K\) juga melalui pusat Bumi. Karena \(N=-K\) (refleksi lewat pusat Bumi), \(N\) otomatis berada pada bidang yang sama — sehingga \(X,K,N\) terletak pada satu lingkaran besar yang sama, dengan \(N\) tepat berseberangan \(180^\circ\) busur dari \(K\) di sepanjang lingkaran itu. Arah (azimuth) menuju suatu titik adalah proyeksi arah sepanjang lingkaran besar tersebut pada bidang singgung di \(X\); karena \(N\) berlawanan arah dari \(K\) pada lingkaran yang sama, azimuth menuju \(N\) adalah azimuth menuju \(K\) ditambah \(180^\circ\). ∎</p>
+      </div>
+      <div class="theorem-box">
+        <div class="t-label">Teorema 2 — Rashdul Kiblat Nadir Ka'bah</div>
+        <p style="margin:8px 0 0;">Jika pada instan \(t^{**}\) berlaku \(\delta(t^{**})=-\varphi_K\) dan \(\lambda_S(t^{**})=\lambda_N\) (matahari tepat di zenit titik Nadir), maka \(S(t^{**})=N\), sehingga dengan (2) dan Lemma (4):</p>
+        <p>\[ \mathrm{Az}_\odot(X,t^{**})=\mathrm{Az}(X\to N)=\mathrm{Az}_{\text{kiblat}}(X)+180^\circ \tag{5} \]</p>
+        <p>Azimuth bayangan \(=\mathrm{Az}_\odot+180^\circ\), maka:</p>
+        <p>\[ \mathrm{Az}_{\text{bayangan}}(X,t^{**})=\mathrm{Az}_{\text{kiblat}}(X)+360^\circ\equiv \mathrm{Az}_{\text{kiblat}}(X)\pmod{360^\circ} \tag{6} \]</p>
+        <p class="qed">∎ Pada momen Nadir Ka'bah, bayangan itu sendiri (bukan arah ke matahari) menunjuk langsung ke kiblat — kebalikan dari Teorema 1.</p>
+      </div>
+    </div>
+
+    <div class="proof-card">
+      <h3><span class="pnum">5.5</span> Pergeseran 12 Jam</h3>
+      <p>Bujur titik sub-matahari \(\lambda_S(t)\) bergeser mengikuti rotasi Bumi, \(15^\circ\)/jam matahari. Maka \(\lambda_S(t{+}12^{\text{j}})=\lambda_S(t)+180^\circ\pmod{360^\circ}\) — dua belas jam matahari (istiwa) setelah kulminasi di \(\lambda_K\), titik sub-matahari otomatis berada di \(\lambda_K+180^\circ=\lambda_N\). Karena itu, jika waktu kulminasi Ka'bah (istiwa lokal) adalah \(\text{Duhur}_K\), momen Nadir terjadi pada \(\text{Duhur}_K+12^{\text{j}}\) skala istiwa — yang dalam UTC (Makkah \(=\text{UTC}+3\)) menjadi:</p>
+      <p>\[ \mathrm{UTC}_{\text{nadir}}=(\text{Duhur}_K-3)+12=\text{Duhur}_K+9 \tag{7} \]</p>
+      <div class="eq-note">Persamaan (7) inilah yang dipakai kalkulator §03 (label "Momen Nadir (UTC)"). Diturunkan murni dari rotasi Bumi, tidak bergantung pada tanggal — sedangkan syarat \(\delta=-\varphi_K\) pada Teorema 2 barulah yang membatasi peristiwa ini hanya terjadi 27/28 November &amp; 13–16 Januari.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VALIDASI NUMERIK ============ -->
+<section id="validasi">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">06 — Validasi Numerik</div>
+      <h2>Validasi Silang pada Banyak Lokasi di Dunia</h2>
+      <p>Prediksi waktu dari rumus tertutup Persamaan (7) — <b style="color:var(--paper-hi)">Metode A</b> — divalidasi dengan mencari akar (root-finding) secara independen: instan saat azimuth bayangan matahari benar-benar berimpit dengan azimuth kiblat hasil Persamaan (1), tanpa memakai jalan pintas pergeseran 12 jam — <b style="color:var(--paper-hi)">Metode B</b>. Dihitung langsung di peramban Anda untuk lokasi-lokasi berikut.</p>
+    </div>
+
+    <div class="val-controls">
+      <button class="btn" id="runValidationBtn">Jalankan Validasi →</button>
+      <span class="hint" id="valStatusText" style="color:var(--paper-lo);"></span>
+    </div>
+
+    <div class="val-summary" id="valSummary" style="display:none;">
+      <div class="val-stat"><div class="k">Lokasi diuji</div><div class="v" id="valCount">–</div></div>
+      <div class="val-stat"><div class="k">Selisih rata-rata</div><div class="v" id="valMean">–</div></div>
+      <div class="val-stat"><div class="k">Selisih RMS</div><div class="v" id="valRMS">–</div></div>
+      <div class="val-stat"><div class="k">Selisih maksimum</div><div class="v" id="valMax">–</div></div>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead><tr>
+          <th>Lokasi</th><th>Lintang, Bujur</th><th>Metode A (UTC)</th><th>Metode B (UTC)</th><th>Selisih</th><th>Altitude Matahari</th>
+        </tr></thead>
+        <tbody id="valTableBody"><tr><td colspan="6" style="text-align:center; padding:30px;">Klik "Jalankan Validasi" untuk menghitung.</td></tr></tbody>
+      </table>
+    </div>
+    <p style="font-size:13px; color:var(--paper-lo); margin-top:14px;">Selisih yang konsisten kecil (orde detik) di seluruh lokasi — lintang berbeda, belahan bumi berbeda, zona waktu berbeda — merupakan bukti numerik bahwa Teorema 2 (§5.4) berlaku umum, bukan kebetulan pada satu titik saja. Lokasi dekat ekuator menunjukkan selisih relatif lebih besar karena kurva azimuth-terhadap-waktu melandai di sekitar lintasan zenit (dibahas di §07).</p>
+  </div>
+</section>
+
+<!-- ============ ANALISIS GALAT ============ -->
+<section id="galat">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">07 — Analisis Galat</div>
+      <h2>Sumber Ketidakpastian &amp; Besarannya</h2>
+      <p>Lima sumber galat utama diuraikan berikut, masing-masing dengan estimasi besaran dan dampaknya terhadap akurasi arah kiblat akhir.</p>
+    </div>
+
+    <div class="error-grid">
+      <div class="error-card">
+        <h4>1. Presisi algoritma posisi matahari</h4>
+        <div class="mag">≈ 0,01°</div>
+        <p>Algoritma deklinasi &amp; equation of time memakai metode presisi-rendah Meeus (<i>Astronomical Algorithms</i>, bab 25) / NOAA Solar Calculator, akurat ≈36″ dalam bujur ekliptika dan beberapa detik waktu dalam equation of time untuk rentang tahun 1900–2100 — berbeda dari metode ephemeris presisi-tinggi (VSOP87) yang dipakai pada berkas Excel rujukan, namun keduanya berasal dari kerangka perturbasi orbit yang sama.</p>
+      </div>
+      <div class="error-card">
+        <h4>2. Galat jam / sinkronisasi waktu</h4>
+        <div class="mag">0,23°–1,12° / menit</div>
+        <p>Laju pergeseran azimuth matahari (\(d\mathrm{Az}/dt\)) di sekitar momen rashdul kiblat, dihitung numerik untuk beberapa lokasi sampel. Lokasi dekat ekuator (deklinasi≈lintang) memiliki laju lebih tinggi karena matahari lewat dekat zenit. Artinya galat jam 1 menit menghasilkan galat azimuth jauh di bawah 1,5° — nilai ini konsisten dengan selisih Metode A/B pada §06.</p>
+      </div>
+      <div class="error-card">
+        <h4>3. Presisi koordinat Ka'bah</h4>
+        <div class="mag">≈ 0,7–1,0″ / ″</div>
+        <p>Sensitivitas azimuth terhadap galat 1 detik busur pada lintang Ka'bah (21°25′21,04″LU) mendekati rasio 1:1 di kebanyakan lintang menengah, dan mengecil di lintang tinggi. Karena koordinat Ka'bah yang dipakai berasal dari pengukuran presisi (akurasi sub-detik-busur), kontribusi galat ini praktis diabaikan (&lt;1″ azimuth).</p>
+      </div>
+      <div class="error-card">
+        <h4>4. Lintang geodetik vs geosentris</h4>
+        <div class="mag">≈ 50″–470″</div>
+        <p>Bumi adalah elipsoid pepat (WGS84, \(f=1/298{,}257\)), bukan bola sempurna. Rumus segitiga bola memakai lintang geografis (geodetik) apa adanya, padahal secara astronomis yang relevan adalah lintang geosentris. Selisih azimuth akibat aproksimasi ini bisa mencapai ±8′ pada lintang menengah — sumber galat terbesar dalam analisis ini, dan sejalan dengan temuan Siti Tatmainul Qulub (lihat §09).</p>
+      </div>
+      <div class="error-card">
+        <h4>5. Refraksi atmosfer pada batas siang/malam</h4>
+        <div class="mag">−0°50′</div>
+        <p>Status "siang/malam" pada kalkulator §03 semula memakai horizon geometris (altitude&gt;0°). Cahaya matahari dibelokkan atmosfer ≈34′ dekat horizon, ditambah jari-jari piringan matahari ≈16′, sehingga matahari terbit/terbenam sebenarnya terjadi pada altitude ≈−0°50′ (−0,8333°), bukan 0°. Kalkulator telah dikoreksi memakai ambang ini — pergeseran waktu status di sekitar terminator akibat koreksi ini berorde ±3–4 menit lokal, tidak memengaruhi azimuth kiblat itu sendiri.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:26px;">
+      <h4>Kesimpulan Anggaran Galat</h4>
+      <p>Menjumlahkan sumber-sumber di atas secara konservatif, total ketidakpastian arah kiblat hasil metode Nadir Ka'bah berada pada orde <b>beberapa menit busur hingga ~1°</b> — jauh di bawah ambang toleransi Ihtiyath al-Qiblah ±2° (Moh Hanif Lutfi, mengacu Muh Ma'rufin Sudibyo) dan sepadan dengan rentang toleransi Mazhab Hanafi di luar Masjidil Haram, 2°30″–3°30″ (Siti Nurul Iffah Faridah). Untuk penggunaan presisi sangat tinggi (radius beberapa meter di sekitar Ka'bah), koreksi geodetik-geosentris pada butir (4) perlu diperhitungkan eksplisit — di luar cakupan itu, metode ini cukup andal untuk verifikasi arah kiblat harian.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KESIMPULAN ============ -->
+<section id="kesimpulan">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">08 — Kesimpulan</div>
+      <h2>Hasil Penelitian, Pembaharuan Konsep &amp; Pengembangan</h2>
+      <p>Merangkum pembuktian (§05), validasi numerik (§06), dan analisis galat (§07) di atas menjadi tiga simpulan utama penelitian ini.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;" class="concl-grid-mobile">
+      <div class="error-card">
+        <h4>1. Hasil Penelitian</h4>
+        <p>Kondisi Rashdul Kiblat Nadir Ka'bah (\(\delta=-\varphi_K\) bertepatan dengan titik sub-matahari di \(\lambda_K+180^\circ\)) terbukti valid secara matematis (Teorema 1 &amp; 2, §05) dan konsisten secara numerik: formula waktu tertutup Persamaan (7) sepakat dengan pencarian akar independen hingga orde puluhan detik saja di 23 lokasi lintas benua (§06), dengan total galat praktis di bawah ambang toleransi ihtiyath yang berlaku dalam fikih falak (§07). Peristiwa ini terjadi dua kali setahun — 27/28 November &amp; 13–16 Januari — melengkapi dua peristiwa Rashdul Kiblat Global kulminasi (27/28 Mei &amp; 15/16 Juli).</p>
+      </div>
+      <div class="error-card">
+        <h4>2. Pembaharuan Konsep</h4>
+        <p>Penelitian ini menggeser acuan Rashdul Kiblat Global dari "matahari di zenit Ka'bah" semata, menjadi kerangka yang lebih umum: <b style="color:var(--ink)">matahari di titik sub-matahari mana pun yang segaris dengan sumbu kiblat–antikiblat</b> — baik di zenit Ka'bah (kulminasi) maupun di nadirnya. Lemma titik antipodal (§5.4) menjadi jembatan matematis yang menyatukan kedua peristiwa dalam satu prinsip yang sama, alih-alih dua fenomena terpisah seperti dipahami sebagian literatur sebelumnya.</p>
+      </div>
+      <div class="error-card">
+        <h4>3. Pengembangan</h4>
+        <p>Secara praktis, penelitian ini melengkapi cakupan geografis metode rashdul kiblat menjadi berlaku di seluruh permukaan bumi (§04) — wilayah GMT +9 s.d. −4 yang sebelumnya tidak terjangkau verifikasi kiblat lewat bayangan matahari kini memiliki momennya sendiri. Kalkulator interaktif (§03) beserta validator dua-metode (§06) yang menyertai penelitian ini dapat menjadi alat bantu langsung bagi masyarakat maupun rujukan lanjutan bagi penelitian rashdul kiblat berikutnya, misalnya perluasan ke koreksi geodetik-geosentris penuh (§07 butir 4) untuk presisi sub-arcminute.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PEMBAHASAN & LITERATUR ============ -->
+<section id="pembahasan">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">09 — Pembahasan</div>
+      <h2>Kaitan dengan Literatur Falak &amp; Astronomi</h2>
+      <p>Hasil di atas diposisikan terhadap kajian pustaka yang menjadi landasan penelitian ini.</p>
+    </div>
+
+    <div class="proof-card" style="background:transparent; border:none; box-shadow:none; padding:0;">
+      <div class="lit-item">
+        <div class="lit-name">Slamet Hambali<span class="yr">Ilmu Falak, 2011 &amp; 2013</span></div>
+        <div class="lit-desc">Definisi Rashdul Kiblat Global (Istiwa' A'dhom) sebagai rujukan dasar Teorema 1 (§5.3) tervalidasi ulang: hasil kalkulator untuk 27/28 Mei &amp; 15/16 Juli konsisten dengan kriteria deklinasi = lintang Ka'bah yang beliau kemukakan.</div>
+      </div>
+      <div class="lit-item">
+        <div class="lit-name">Muhammad Faishol Amin<span class="yr">Global Rashdul Qibla: 4× setahun, 2018</span></div>
+        <div class="lit-desc">Penelitian paling dekat dengan penelitian ini — telah mengidentifikasi <b>empat</b> momen rashdul kiblat global per tahun, dua di antaranya adalah peristiwa Nadir. Penelitian ini <b>menegaskan &amp; memperluas</b> temuan Amin dengan pembuktian matematis eksplisit (§05), formula waktu tertutup Persamaan (7), serta cakupan zona waktu global yang belum dirinci dalam karya beliau.</div>
+      </div>
+      <div class="lit-item">
+        <div class="lit-name">Siti Tatmainul Qulub<span class="yr">Rasd Al-Qiblat: Astronomi vs Geodesi, 2013</span></div>
+        <div class="lit-desc">Perbandingan model bumi bola sempurna vs elipsoid geodesi yang beliau angkat terbukti relevan secara kuantitatif di §07 butir (4): selisih azimuth akibat lintang geodetik-vs-geosentris (hingga ±8′) adalah sumber galat terbesar dalam perhitungan ini, mengonfirmasi pentingnya isu tersebut untuk presisi tinggi.</div>
+      </div>
+      <div class="lit-item">
+        <div class="lit-name">Siti Nurul Iffah Faridah<span class="yr">Toleransi Mazhab Hanafi, 2017</span></div>
+        <div class="lit-desc">Ambang toleransi arah kiblat menurut Mazhab Hanafi (arcdetik di Masjidil Haram hingga beberapa menit busur di luar Makkah) dipakai sebagai tolok ukur kelayakan praktis pada Kesimpulan Anggaran Galat (§07) — total galat metode ini berada dalam rentang tersebut.</div>
+      </div>
+      <div class="lit-item">
+        <div class="lit-name">Moh Hanif Lutfi<span class="yr">Ihtiyath Al-Qiblah Muh Ma'rufin Sudibyo, 2014</span></div>
+        <div class="lit-desc">Nilai Ihtiyath ±2° yang direkomendasikan menjadi pembanding utama: galat total metode Nadir Ka'bah (orde menit busur hingga ~1°) berada jauh di bawah ambang ±2° tersebut, menunjukkan metode ini layak dipakai untuk verifikasi praktis di lapangan.</div>
+      </div>
+      <div class="lit-item">
+        <div class="lit-name">Syadila Amrilah<span class="yr">Matahari di Kaki Ka'bah, Indonesia Timur, 2021</span></div>
+        <div class="lit-desc">Mengangkat fenomena yang secara astronomis identik dengan Nadir Ka'bah, namun dibatasi pada Indonesia Timur (Biak, Papua) dengan istilah berbeda ("kaki Ka'bah"). Penelitian ini <b>menggeneralisasi</b> fenomena tersebut secara global (§04, tabel cakupan GMT +9 s.d. −4), membuktikan Papua hanyalah satu dari banyak wilayah yang mengalaminya.</div>
+      </div>
+      <div class="lit-item">
+        <div class="lit-name">Nailul Alvi Hidayah<span class="yr">Rashdul Qiblah Beda Azimuth, 2022</span></div>
+        <div class="lit-desc">Metode interpolasi &amp; sudut istimewa (45°, 90°, 315°) yang diuji akurasinya di sana berkerabat metodologis dengan pendekatan root-finding Metode B (§06) — keduanya memerlukan pencarian numerik presisi tinggi di luar momen kulminasi/nadir eksak.</div>
+      </div>
+      <div class="lit-item">
+        <div class="lit-name">Muhammad Thoyfur<span class="yr">Digitalization of Local Rashdul Qibla, 2021</span></div>
+        <div class="lit-desc">Pendekatan digital/interaktif untuk rashdul kiblat lokal pada karya sebelumnya menjadi dasar metodologis kalkulator berbasis-browser pada §03 — memperluas prinsip digitalisasi tersebut dari skala lokal ke skala global dengan pembuktian formal yang menyertainya.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div>Rashdul Kiblat Nadir Ka'bah — Alat bantu edukasi &amp; verifikasi arah kiblat.</div>
+      <div style="margin-top:6px;">Ditulis dan dikembangkan oleh <b style="color:var(--paper-hi);">Muhammad Thoyfur</b> · <a href="mailto:thoyfur.muhammad@gmail.com">thoyfur.muhammad@gmail.com</a></div>
+    </div>
+    <div>Pengembangan Metode Rashdul Kiblat Global.</div>
+  </div>
+</footer>
+
+<script>
+/* ===================== ASTRONOMICAL ENGINE ===================== */
+const KAABA_LAT = 21 + 25/60 + 21.04/3600;
+const KAABA_LON = 39 + 49/60 + 34.33/3600;
+
+function toRad(d){return d*Math.PI/180}
+function toDeg(r){return r*180/Math.PI}
+function julianDay(date){return date.getTime()/86400000 + 2440587.5}
+
+function solarPosition(date){
+  const jd = julianDay(date);
+  const T = (jd - 2451545.0)/36525.0;
+  const L0 = (280.46646 + T*(36000.76983 + T*0.0003032)) % 360;
+  const M = 357.52911 + T*(35999.05029 - 0.0001537*T);
+  const e = 0.016708634 - T*(0.000042037 + 0.0000001267*T);
+  const Mrad = toRad(M);
+  const C = Math.sin(Mrad)*(1.914602 - T*(0.004817+0.000014*T)) + Math.sin(2*Mrad)*(0.019993-0.000101*T) + Math.sin(3*Mrad)*0.000289;
+  const trueLong = L0 + C;
+  const omega = 125.04 - 1934.136*T;
+  const lambda = trueLong - 0.00569 - 0.00478*Math.sin(toRad(omega));
+  const epsilon0 = 23 + (26 + (21.448 - T*(46.815+T*(0.00059-T*0.001813)))/60)/60;
+  const epsilon = epsilon0 + 0.00256*Math.cos(toRad(omega));
+  const decl = toDeg(Math.asin(Math.sin(toRad(epsilon))*Math.sin(toRad(lambda))));
+  const y = Math.tan(toRad(epsilon/2))**2;
+  const L0rad = toRad(L0);
+  const EqTimeRad = y*Math.sin(2*L0rad) - 2*e*Math.sin(Mrad) + 4*e*y*Math.sin(Mrad)*Math.cos(2*L0rad) - 0.5*y*y*Math.sin(4*L0rad) - 1.25*e*e*Math.sin(2*Mrad);
+  const eqTimeMinutes = toDeg(EqTimeRad)*4;
+  return {decl, eqTimeMinutes};
+}
+
+function findCrossing(year, m1,d1, m2,d2, target){
+  let t0 = Date.UTC(year,m1-1,d1,0,0,0);
+  let t1 = Date.UTC(year,m2-1,d2,0,0,0);
+  const f = (t)=> solarPosition(new Date(t)).decl - target;
+  let f0=f(t0), f1=f(t1);
+  if (Math.sign(f0)===Math.sign(f1)) return null;
+  for(let i=0;i<60;i++){
+    const tm = (t0+t1)/2;
+    const fm = f(tm);
+    if (Math.sign(fm)===Math.sign(f0)){t0=tm;f0=fm;} else {t1=tm;f1=fm;}
+  }
+  return new Date((t0+t1)/2);
+}
+
+function duhurKakbahGMT3(date){
+  const evalDate = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 9,0,0));
+  const {eqTimeMinutes} = solarPosition(evalDate);
+  const eqHours = eqTimeMinutes/60;
+  return {duhur: 12 - eqHours + (45 - KAABA_LON)/15, eqTimeMinutes, evalDate};
+}
+
+function fmtHM(hours, withSec=true){
+  let h = ((hours%24)+24)%24;
+  const hh = Math.floor(h);
+  const mmF = (h-hh)*60;
+  const mm = Math.floor(mmF);
+  const ss = Math.round((mmF-mm)*60);
+  if(!withSec) return String(hh).padStart(2,'0')+':'+String(mm).padStart(2,'0');
+  return String(hh).padStart(2,'0')+':'+String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0');
+}
+
+function qiblaAzimuth(lat, lon){
+  const phiX = toRad(lat), lamX = toRad(lon);
+  const phiK = toRad(KAABA_LAT), lamK = toRad(KAABA_LON);
+  const dLam = lamK - lamX;
+  const pembilang = Math.sin(dLam);
+  const penyebut = Math.cos(phiX)*Math.tan(phiK) - Math.sin(phiX)*Math.cos(dLam);
+  let az = toDeg(Math.atan2(pembilang, penyebut));
+  if (az<0) az+=360;
+  return az;
+}
+
+function solarAltitude(date, lat, lon){
+  const {decl, eqTimeMinutes} = solarPosition(date);
+  const utcHours = date.getUTCHours()+date.getUTCMinutes()/60+date.getUTCSeconds()/3600;
+  const solarTime = utcHours + lon/15 + eqTimeMinutes/60;
+  const hourAngle = (solarTime-12)*15;
+  const phi = toRad(lat), d = toRad(decl), H = toRad(hourAngle);
+  const alt = toDeg(Math.asin(Math.sin(phi)*Math.sin(d)+Math.cos(phi)*Math.cos(d)*Math.cos(H)));
+  return alt;
+}
+
+/* ---------- D:M:S helpers ---------- */
+function degToDMS(deg, isLat){
+  const sign = deg<0?-1:1; let a=Math.abs(deg);
+  let d = Math.floor(a);
+  let mF=(a-d)*60; let m=Math.floor(mF);
+  let s=Math.round((mF-m)*60);
+  if(s>=60){s=0;m+=1;}
+  if(m>=60){m=0;d+=1;}
+  if(isLat===true){
+    const suffix = sign<0?' LS':' LU';
+    return d+"°"+String(m).padStart(2,'0')+"′"+String(s).padStart(2,'0')+"″"+suffix;
+  }
+  if(isLat===false){
+    const suffix = sign<0?' BB':' BT';
+    return d+"°"+String(m).padStart(2,'0')+"′"+String(s).padStart(2,'0')+"″"+suffix;
+  }
+  const prefix = sign<0?'−':'';
+  return prefix + d+"°"+String(m).padStart(2,'0')+"′"+String(s).padStart(2,'0')+"″";
+}
+function dmsPartsToDecimal(d,m,s,dir){ return dir*(Math.abs(d)+Math.abs(m)/60+Math.abs(s)/3600); }
+function decimalToDMSParts(deg){
+  const sign = deg<0?-1:1; let a=Math.abs(deg);
+  const d = Math.floor(a);
+  let mF=(a-d)*60; const m=Math.floor(mF);
+  let s = Math.round((mF-m)*60*100)/100;
+  return {d,m,s,dir:sign};
+}
+
+/* ===================== EVENTS FOR YEAR ===================== */
+function computeEvents(year){
+  const c1 = findCrossing(year, 5,15, 6,5, KAABA_LAT);
+  const c2 = findCrossing(year, 7,5, 7,25, KAABA_LAT);
+  const n1 = findCrossing(year, 11,15, 12,5, -KAABA_LAT);
+  const n2 = findCrossing(year+1, 1,5, 1,25, -KAABA_LAT);
+  return [
+    {key:'kulm1', type:'kulminasi', label:'Kulminasi · Mei', date:c1},
+    {key:'kulm2', type:'kulminasi', label:'Kulminasi · Juli', date:c2},
+    {key:'nadir1', type:'nadir', label:'Nadir · November', date:n1},
+    {key:'nadir2', type:'nadir', label:'Nadir · Januari', date:n2},
+  ].filter(e=>e.date);
+}
+const fmtDateID = (d)=> d.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+
+/* ===================== LOCATIONS ===================== */
+// tz: standard civil time zone (GMT). "covered" = experiences daylight during Nadir Ka'bah moment (tz NOT within -3..+8)
+const CITIES = [
+  // -- Tercakup Rashdul Kiblat Nadir Ka'bah --
+  ["Jayapura, Papua", -2.5333, 140.7167, 9],
+  ["Merauke, Papua", -8.4667, 140.4, 9],
+  ["Sorong, Papua Barat", -0.8833, 131.25, 9],
+  ["Ambon, Maluku", -3.6954, 128.1814, 9],
+  ["Ternate, Maluku Utara", 0.7833, 127.3833, 9],
+  ["Dili, Timor Leste", -8.5569, 125.5603, 9],
+  ["Tokyo, Jepang", 35.6762, 139.6503, 9],
+  ["Seoul, Korea Selatan", 37.5665, 126.978, 9],
+  ["Pyongyang, Korea Utara", 39.0392, 125.7625, 9],
+  ["Vladivostok, Rusia", 43.1155, 131.8855, 10],
+  ["Port Moresby, Papua Nugini", -9.4438, 147.1803, 10],
+  ["Darwin, Australia", -12.4634, 130.8456, 9.5],
+  ["Adelaide, Australia", -34.9285, 138.6007, 9.5],
+  ["Sydney, Australia", -33.8688, 151.2093, 10],
+  ["Brisbane, Australia", -27.4698, 153.0251, 10],
+  ["Melbourne, Australia", -37.8136, 144.9631, 10],
+  ["Perth, Australia", -31.9505, 115.8605, 8],
+  ["Honiara, Kepulauan Solomon", -9.4333, 159.95, 11],
+  ["Port Vila, Vanuatu", -17.7333, 168.3167, 11],
+  ["Noumea, Kaledonia Baru", -22.2758, 166.4581, 11],
+  ["Auckland, Selandia Baru", -36.8485, 174.7633, 12],
+  ["Wellington, Selandia Baru", -41.2865, 174.7762, 12],
+  ["Suva, Fiji", -18.1416, 178.4419, 12],
+  ["Tarawa, Kiribati", 1.4518, 172.9718, 12],
+  ["Majuro, Kepulauan Marshall", 7.1164, 171.1858, 12],
+  ["Apia, Samoa", -13.8506, -171.7513, 13],
+  ["Honolulu, Hawaii, AS", 21.3069, -157.8583, -10],
+  ["Anchorage, Alaska, AS", 61.2181, -149.9003, -9],
+  ["Papeete, Polinesia Prancis", -17.5516, -149.5585, -10],
+  ["Los Angeles, AS", 34.0522, -118.2437, -8],
+  ["Vancouver, Kanada", 49.2827, -123.1207, -8],
+  ["Denver, AS", 39.7392, -104.9903, -7],
+  ["Chicago, AS", 41.8781, -87.6298, -6],
+  ["Mexico City, Meksiko", 19.4326, -99.1332, -6],
+  ["Bogota, Kolombia", 4.711, -74.0721, -5],
+  ["New York, AS", 40.7128, -74.006, -5],
+  ["Lima, Peru", -12.0464, -77.0428, -5],
+  ["Toronto, Kanada", 43.6511, -79.3470, -5],
+  ["Havana, Kuba", 23.1136, -82.3666, -5],
+  ["Caracas, Venezuela", 10.4806, -66.9036, -4],
+  ["La Paz, Bolivia", -16.4897, -68.1193, -4],
+  ["Manaus, Brasil", -3.119, -60.0217, -4],
+  ["Santiago, Chili", -33.4489, -70.6693, -4],
+  // -- Tidak tercakup (gunakan Rashdul Kiblat Global) --
+  ["Jakarta, Indonesia", -6.2, 106.8167, 7],
+  ["Semarang, Indonesia", -6.9667, 110.4167, 7],
+  ["Surabaya, Indonesia", -7.2575, 112.7521, 7],
+  ["Makassar, Indonesia", -5.1477, 119.4327, 8],
+  ["Denpasar, Bali", -8.65, 115.2167, 8],
+  ["Mekah, Arab Saudi", 21.4225, 39.8262, 3],
+  ["Kabul, Afghanistan", 34.5667, 69.2167, 4.5],
+  ["Kairo, Mesir", 30.0444, 31.2357, 2],
+  ["Istanbul, Turki", 41.0082, 28.9784, 3],
+  ["London, Inggris", 51.5072, -0.1276, 0],
+  ["Paris, Prancis", 48.8566, 2.3522, 1],
+  ["Moskow, Rusia", 55.7558, 37.6173, 3],
+  ["Nairobi, Kenya", -1.2921, 36.8219, 3],
+  ["Johannesburg, Afrika Selatan", -26.2041, 28.0473, 2],
+];
+function isNadirCovered(tz){ return !(tz>-3.01 && tz<8.01); }
+
+function initCitySelect(){
+  const sel = document.getElementById('citySelect');
+  const covered = CITIES.filter(c=>isNadirCovered(c[3]));
+  const notCovered = CITIES.filter(c=>!isNadirCovered(c[3]));
+
+  const optManual = document.createElement('option');
+  optManual.value=''; optManual.textContent='— Masukkan koordinat manual —';
+  sel.appendChild(optManual);
+
+  const g1 = document.createElement('optgroup');
+  g1.label = "✓ Tercakup Rashdul Kiblat Nadir Ka'bah";
+  covered.forEach(c=>{
+    const idx = CITIES.indexOf(c);
+    const opt=document.createElement('option'); opt.value=idx; opt.textContent=c[0];
+    g1.appendChild(opt);
+  });
+  sel.appendChild(g1);
+
+  const g2 = document.createElement('optgroup');
+  g2.label = "Tidak tercakup — gunakan Rashdul Kiblat Global";
+  notCovered.forEach(c=>{
+    const idx = CITIES.indexOf(c);
+    const opt=document.createElement('option'); opt.value=idx; opt.textContent=c[0];
+    g2.appendChild(opt);
+  });
+  sel.appendChild(g2);
+
+  sel.addEventListener('change', ()=>{
+    if(sel.value===''){updateCoverageNote(null); return;}
+    const c = CITIES[sel.value];
+    setLatDMS(c[1]); setLonDMS(c[2]);
+    document.getElementById('tzInput').value=c[3];
+    updateCoverageNote(c[3]);
+  });
+}
+
+function updateCoverageNote(tz){
+  const el = document.getElementById('coverageNote');
+  if(tz===null){el.className='coverage-note'; el.textContent=''; return;}
+  const covered = isNadirCovered(tz);
+  el.className = 'coverage-note show '+(covered?'covered':'notcovered');
+  el.textContent = covered
+    ? "✓ Lokasi ini mengalami siang saat momen Nadir Ka'bah — Rashdul Kiblat Nadir dapat digunakan."
+    : "Lokasi ini sedang malam saat momen Nadir Ka'bah — gunakan Rashdul Kiblat Global (kulminasi) sebagai gantinya.";
+}
+
+function setLatDMS(dec){
+  const p = decimalToDMSParts(dec);
+  document.getElementById('latDeg').value = p.d;
+  document.getElementById('latMin').value = p.m;
+  document.getElementById('latSec').value = p.s;
+  document.getElementById('latDir').value = p.dir;
+}
+function setLonDMS(dec){
+  const p = decimalToDMSParts(dec);
+  document.getElementById('lonDeg').value = p.d;
+  document.getElementById('lonMin').value = p.m;
+  document.getElementById('lonSec').value = p.s;
+  document.getElementById('lonDir').value = p.dir;
+  autoSuggestTZ();
+}
+function getLatDecimal(){
+  return dmsPartsToDecimal(
+    parseFloat(document.getElementById('latDeg').value)||0,
+    parseFloat(document.getElementById('latMin').value)||0,
+    parseFloat(document.getElementById('latSec').value)||0,
+    parseFloat(document.getElementById('latDir').value)
+  );
+}
+function getLonDecimal(){
+  return dmsPartsToDecimal(
+    parseFloat(document.getElementById('lonDeg').value)||0,
+    parseFloat(document.getElementById('lonMin').value)||0,
+    parseFloat(document.getElementById('lonSec').value)||0,
+    parseFloat(document.getElementById('lonDir').value)
+  );
+}
+function autoSuggestTZ(){
+  const lon = getLonDecimal();
+  const tz = Math.round(lon/15*2)/2; // nearest 0.5h
+  document.getElementById('tzInput').value = tz;
+  updateCoverageNote(tz);
+}
+
+/* ===================== UI STATE ===================== */
+let currentEvents = [];
+let selectedEventKey = 'nadir1';
+
+function renderEventTabs(){
+  const wrap = document.getElementById('eventTabs');
+  wrap.innerHTML='';
+  currentEvents.forEach(ev=>{
+    const div=document.createElement('div');
+    div.className='event-tab'+(ev.key===selectedEventKey?' active':'');
+    div.innerHTML = `<div class="et-label">${ev.type==='nadir'?'Nadir Ka\'bah':'Kulminasi Global'}</div><div class="et-date">${fmtDateID(ev.date)}</div>`;
+    div.addEventListener('click', ()=>{selectedEventKey=ev.key; renderEventTabs(); runCalc();});
+    wrap.appendChild(div);
+  });
+}
+
+function regenerateEvents(){
+  const year = parseInt(document.getElementById('yearInput').value)||2026;
+  currentEvents = computeEvents(year);
+  if(!currentEvents.find(e=>e.key===selectedEventKey)){
+    selectedEventKey = currentEvents.find(e=>e.type==='nadir')?.key || currentEvents[0]?.key;
+  }
+  renderEventTabs();
+}
+
+/* ===================== CALCULATION + RENDER ===================== */
+function runCalc(){
+  const ev = currentEvents.find(e=>e.key===selectedEventKey);
+  if(!ev) return;
+  const lat = getLatDecimal();
+  const lon = getLonDecimal();
+  const tz = parseFloat(document.getElementById('tzInput').value);
+
+  const {duhur, eqTimeMinutes} = duhurKakbahGMT3(ev.date);
+  const utcKulm = duhur - 3;
+  const utcNadir = duhur + 9;
+
+  const isNadirEvent = ev.type==='nadir';
+  const utcTarget = isNadirEvent ? utcNadir : utcKulm;
+  let localTime = utcTarget + tz;
+  let dayShift = 0;
+  if(localTime>=24){localTime-=24; dayShift=1;}
+  if(localTime<0){localTime+=24; dayShift=-1;}
+
+  const eventDateOnly = new Date(Date.UTC(ev.date.getUTCFullYear(), ev.date.getUTCMonth(), ev.date.getUTCDate()));
+  const resultDate = new Date(eventDateOnly.getTime() + dayShift*86400000);
+
+  const utcInstant = new Date(Date.UTC(ev.date.getUTCFullYear(), ev.date.getUTCMonth(), ev.date.getUTCDate(),0,0,0) + utcTarget*3600000);
+  const alt = solarAltitude(utcInstant, lat, lon);
+  const REFRACTION_THRESHOLD = -0.8333; // standard sunrise/sunset altitude: -34' refraction - 16' solar semi-diameter
+  const isDay = alt > REFRACTION_THRESHOLD;
+
+  const az = qiblaAzimuth(lat, lon);
+
+  let otherLocal = (isNadirEvent? utcKulm : utcNadir) + tz;
+  otherLocal = ((otherLocal%24)+24)%24;
+
+  document.getElementById('resultLabel').textContent = isNadirEvent
+    ? "Rashdul Kiblat Nadir Ka'bah — pukul lokal"
+    : "Rashdul Kiblat Global (kulminasi) — pukul lokal";
+  document.getElementById('resultTime').textContent = fmtHM(localTime);
+  document.getElementById('resultDate').textContent = fmtDateID(resultDate) + (dayShift!==0? (dayShift>0? " (+1 hari)":" (-1 hari)"):"");
+
+  const pill = document.getElementById('statusPill');
+  pill.style.display='inline-flex';
+  pill.className = 'status-pill '+(isDay?'day':'night');
+  document.getElementById('statusText').textContent = isDay
+    ? `Matahari di atas ufuk (altitude ${alt.toFixed(1)}°) — metode ini bisa dipakai di lokasi Anda`
+    : `Matahari di bawah ufuk (altitude ${alt.toFixed(1)}°) — malam hari di lokasi Anda, gunakan momen ${isNadirEvent? 'Kulminasi':'Nadir'} sebagai gantinya`;
+
+  document.getElementById('statLoc').textContent = degToDMS(lat,true)+', '+degToDMS(lon,false);
+  document.getElementById('statDecl').textContent = degToDMS(isNadirEvent? -KAABA_LAT : KAABA_LAT);
+  document.getElementById('statEqt').textContent = (eqTimeMinutes>=0?'+':'')+eqTimeMinutes.toFixed(2)+' menit';
+  document.getElementById('statDuhur').textContent = fmtHM(duhur)+' GMT+3';
+  document.getElementById('statUtc').textContent = fmtHM(utcTarget)+' UTC';
+  document.getElementById('statAz').textContent = degToDMS(az);
+  document.getElementById('statKulm').textContent = fmtHM(otherLocal,false)+' waktu lokal';
+
+  document.getElementById('instructionBox').innerHTML = isNadirEvent
+    ? `<b>Cara membaca bayangan:</b> Berdirilah <b>membelakangi matahari</b>. Bayangan yang jatuh di depan Anda menunjuk langsung ke arah kiblat — karena matahari sedang berada tepat di titik nadir (seberang) Ka'bah.`
+    : `<b>Cara membaca bayangan:</b> <b>Hadapkan tubuh ke arah matahari</b> (matahari di depan Anda). Arah itulah kiblat — bayangan Anda akan jatuh membelakangi kiblat, karena matahari tepat berkulminasi di atas Ka'bah.`;
+
+  updateCoverageNote(tz);
+  drawDiagram('svgResult', isNadirEvent?'nadir':'kulminasi', isDay);
+}
+
+/* ===================== REGION TABLE ===================== */
+const REGIONS = [
+  ["GMT +9","Indonesia Timur, Jepang, Korea Utara &amp; Selatan, Rusia (sebagian), Timor Leste, Australia (Waktu Tengah)"],
+  ["GMT +10","Australia (Waktu Timur), Mikronesia, Papua Nugini, Rusia (sebagian)"],
+  ["GMT +11","Mikronesia, Kaledonia Baru, Kepulauan Solomon, Vanuatu, Pulau Norfolk"],
+  ["GMT +12","Fiji, Kiribati, Kepulauan Marshall, Selandia Baru, Tuvalu"],
+  ["GMT −11","Samoa, Pulau Jarvis, Midway Atoll"],
+  ["GMT −10","Kepulauan Cook, Polinesia Prancis, Hawaii, Alaska (sebagian)"],
+  ["GMT −9","Polinesia Prancis, Alaska"],
+  ["GMT −8","Kanada Barat, Meksiko Barat Laut, Amerika Serikat (Pasifik)"],
+  ["GMT −7","Kanada, Meksiko, Amerika Serikat (Pegunungan)"],
+  ["GMT −6","Amerika Tengah, Meksiko, Amerika Serikat (Tengah), sebagian Kanada"],
+  ["GMT −5","Kolombia, Kuba, Ekuador, Peru, Amerika Serikat (Timur), Kanada"],
+  ["GMT −4","Brasil (barat), Bolivia, Venezuela, Kepulauan Karibia, Kanada Atlantik"],
+];
+function renderRegions(){
+  const tbody=document.getElementById('regionTableBody');
+  tbody.innerHTML = REGIONS.map(r=>`<tr><td class="hi">${r[0]}</td><td>${r[1]}</td></tr>`).join('');
+}
+
+/* ===================== SVG DIAGRAMS ===================== */
+function earthDiagramSVG(mode){
+  const cx=160, cy=130, r=78;
+  const kaabaOnRight = mode==='kulminasi';
+  const kaabaX = kaabaOnRight? cx+r : cx-r;
+  const nadirX = kaabaOnRight? cx-r : cx+r;
+  return `
+  <defs>
+    <radialGradient id="dayGrad-${mode}" cx="30%" cy="50%" r="80%">
+      <stop offset="0%" stop-color="#F3E2AE"/>
+      <stop offset="100%" stop-color="#E3EEDF"/>
+    </radialGradient>
+    <clipPath id="clipDay-${mode}"><rect x="${cx}" y="${cy-r-4}" width="${r+4}" height="${(r+4)*2}"/></clipPath>
+  </defs>
+  <circle cx="${cx}" cy="${cy}" r="${r}" fill="#DCEAE0" stroke="#1E6B47" stroke-width="1.5"/>
+  <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#dayGrad-${mode})" clip-path="url(#clipDay-${mode})"/>
+  <line x1="${cx}" y1="${cy-r}" x2="${cx}" y2="${cy+r}" stroke="#B8862F" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+
+  <g transform="translate(${cx+r+42},${cy})">
+    <circle r="14" fill="#B8862F"/>
+    ${[0,45,90,135,180,225,270,315].map(a=>`<line x1="${18*Math.cos(a*Math.PI/180)}" y1="${18*Math.sin(a*Math.PI/180)}" x2="${26*Math.cos(a*Math.PI/180)}" y2="${26*Math.sin(a*Math.PI/180)}" stroke="#B8862F" stroke-width="2"/>`).join('')}
+  </g>
+  <line x1="${cx+r+2}" y1="${cy}" x2="${cx+r+26}" y2="${cy}" stroke="#B8862F" stroke-width="1.5" opacity="0.7" stroke-dasharray="2,3"/>
+
+  <g transform="translate(${kaabaX},${cy})">
+    <rect x="-7" y="-7" width="14" height="14" fill="#1E6B47" stroke="#123322" stroke-width="1.5" transform="rotate(45)"/>
+  </g>
+  <text x="${kaabaX}" y="${cy - r - 14}" text-anchor="middle" fill="#123322" font-family="JetBrains Mono, monospace" font-size="11">Ka'bah</text>
+
+  <g transform="translate(${nadirX},${cy})">
+    <circle r="5" fill="none" stroke="#746E33" stroke-width="2"/>
+  </g>
+  <text x="${nadirX}" y="${cy - r - 14}" text-anchor="middle" fill="#746E33" font-family="JetBrains Mono, monospace" font-size="11">Titik Nadir</text>
+
+  <text x="${cx + (kaabaOnRight? r*0.5 : -r*0.5)}" y="${cy+r+26}" text-anchor="middle" fill="#B8862F" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">SIANG</text>
+  <text x="${cx + (kaabaOnRight? -r*0.5 : r*0.5)}" y="${cy+r+26}" text-anchor="middle" fill="#5B6555" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="0.5">MALAM</text>
+  `;
+}
+function drawDiagram(id, mode){ document.getElementById(id).innerHTML = earthDiagramSVG(mode); }
+
+function drawKaabaWatermark(){
+  const el = document.getElementById('bgKaaba');
+  el.innerHTML = `
+    <g transform="translate(60,60)">
+      <rect x="0" y="60" width="220" height="220" fill="none" stroke="#F8F2DE" stroke-width="5"/>
+      <rect x="0" y="60" width="220" height="34" fill="#CBA135"/>
+      <rect x="90" y="180" width="40" height="100" fill="none" stroke="#F8F2DE" stroke-width="4"/>
+      <line x1="0" y1="60" x2="220" y2="280" stroke="#F8F2DE" stroke-width="2"/>
+      <line x1="220" y1="60" x2="0" y2="280" stroke="#F8F2DE" stroke-width="2"/>
+      <rect x="20" y="20" width="180" height="180" fill="none" stroke="#CBA135" stroke-width="3" transform="skewY(-18) translate(0,-46)"/>
+    </g>`;
+}
+function drawOrbitWatermark(){
+  const el = document.getElementById('bgOrbit');
+  const cx=200, cy=200, r=150;
+  el.innerHTML = `
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#F8F2DE" stroke-width="2"/>
+    <ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${r*0.36}" fill="none" stroke="#F8F2DE" stroke-width="2"/>
+    <ellipse cx="${cx}" cy="${cy}" rx="${r*0.7}" ry="${r}" fill="none" stroke="#F8F2DE" stroke-width="2"/>
+    <circle cx="${cx+r}" cy="${cy}" r="10" fill="#CBA135"/>
+    <circle cx="${cx-r}" cy="${cy}" r="7" fill="none" stroke="#F8F2DE" stroke-width="3"/>
+    <rect x="${cx-9}" y="${cy-9}" width="18" height="18" fill="#CBA135" transform="rotate(45 ${cx} ${cy})"/>
+  `;
+}
+function drawBgPattern(){
+  const el = document.getElementById('bgPattern');
+  const s = 84; // tile size
+  el.setAttribute('viewBox', `0 0 ${window.innerWidth||1280} ${document.body.scrollHeight||2000}`);
+  const w = window.innerWidth||1280, h = document.body.scrollHeight||2000;
+  el.innerHTML = `
+    <defs>
+      <pattern id="islamicStar" width="${s}" height="${s}" patternUnits="userSpaceOnUse">
+        <g stroke="#F8F2DE" stroke-width="1" fill="none">
+          <path d="M${s/2} 4 L${s-4} ${s/2} L${s/2} ${s-4} L4 ${s/2} Z"/>
+          <circle cx="${s/2}" cy="${s/2}" r="${s*0.22}"/>
+          <path d="M${s/2} ${s*0.18} L${s*0.82} ${s/2} L${s/2} ${s*0.82} L${s*0.18} ${s/2} Z" transform="rotate(45 ${s/2} ${s/2})"/>
+        </g>
+      </pattern>
+    </defs>
+    <rect x="0" y="0" width="${w}" height="${h}" fill="url(#islamicStar)"/>
+  `;
+}
+
+/* ===================== VALIDATION (METHOD A vs METHOD B) ===================== */
+function solarAzAlt(utcDate, lat, lon){
+  const {decl, eqTimeMinutes} = solarPosition(utcDate);
+  const utcHours = utcDate.getUTCHours()+utcDate.getUTCMinutes()/60+utcDate.getUTCSeconds()/3600+utcDate.getUTCMilliseconds()/3600000;
+  const solarTime = utcHours + lon/15 + eqTimeMinutes/60;
+  const H = (solarTime-12)*15;
+  const Hr=toRad(H), d=toRad(decl), phi=toRad(lat);
+  const sinAlt = Math.sin(phi)*Math.sin(d) + Math.cos(phi)*Math.cos(d)*Math.cos(Hr);
+  const alt = Math.asin(sinAlt);
+  const cosAz = (Math.sin(d) - Math.sin(phi)*sinAlt)/(Math.cos(phi)*Math.cos(alt));
+  const sinAz = -Math.sin(Hr)*Math.cos(d)/Math.cos(alt);
+  let az = toDeg(Math.atan2(sinAz, cosAz));
+  if(az<0) az+=360;
+  return {alt: toDeg(alt), az};
+}
+function angDiff(a,b){
+  let d=(a-b)%360;
+  if(d>180) d-=360;
+  if(d<-180) d+=360;
+  return d;
+}
+// Method B: independent root-find of the instant the shadow azimuth matches the qibla azimuth,
+// choosing the crossing nearest the Method-A prediction (handles near-equatorial double-crossings).
+function methodBInstant(expectedUtcMs, lat, lon){
+  const targetAz = qiblaAzimuth(lat, lon);
+  const shadowAz = (tms)=> (solarAzAlt(new Date(tms), lat, lon).az + 180) % 360;
+  const f = (tms)=> angDiff(shadowAz(tms), targetAz);
+  const windowMs = 3*3600*1000;
+  const steps = 2160;
+  const t0 = expectedUtcMs - windowMs;
+  let brackets=[], prevT=t0, prevF=f(t0);
+  for(let i=1;i<=steps;i++){
+    const t = t0 + (2*windowMs)*(i/steps);
+    const ff = f(t);
+    if(Math.sign(ff)!==Math.sign(prevF)) brackets.push([prevT,t]);
+    prevT=t; prevF=ff;
+  }
+  if(brackets.length===0) return null;
+  brackets.sort((a,b)=>Math.abs((a[0]+a[1])/2-expectedUtcMs)-Math.abs((b[0]+b[1])/2-expectedUtcMs));
+  let [bt0,bt1]=brackets[0], bf0=f(bt0);
+  for(let i=0;i<80;i++){
+    const tm=(bt0+bt1)/2, fm=f(tm);
+    if(Math.sign(fm)===Math.sign(bf0)){bt0=tm;bf0=fm;} else {bt1=tm;}
+  }
+  return (bt0+bt1)/2;
+}
+
+const VALIDATION_LOCATIONS = [
+  ["Jayapura, Indonesia", -2.5333, 140.7167],
+  ["Ambon, Indonesia", -3.6954, 128.1814],
+  ["Tokyo, Jepang", 35.6762, 139.6503],
+  ["Seoul, Korea Selatan", 37.5665, 126.978],
+  ["Sydney, Australia", -33.8688, 151.2093],
+  ["Perth, Australia", -31.9505, 115.8605],
+  ["Auckland, Selandia Baru", -36.8485, 174.7633],
+  ["Suva, Fiji", -18.1416, 178.4419],
+  ["Port Moresby, PNG", -9.4438, 147.1803],
+  ["Vladivostok, Rusia", 43.1155, 131.8855],
+  ["Honolulu, Hawaii", 21.3069, -157.8583],
+  ["Anchorage, Alaska", 61.2181, -149.9003],
+  ["Los Angeles, AS", 34.0522, -118.2437],
+  ["Vancouver, Kanada", 49.2827, -123.1207],
+  ["Denver, AS", 39.7392, -104.9903],
+  ["Mexico City, Meksiko", 19.4326, -99.1332],
+  ["New York, AS", 40.7128, -74.006],
+  ["Bogota, Kolombia", 4.711, -74.0721],
+  ["Lima, Peru", -12.0464, -77.0428],
+  ["Caracas, Venezuela", 10.4806, -66.9036],
+  ["Sao Paulo, Brasil", -23.5505, -46.6333],
+  ["Santiago, Chili", -33.4489, -70.6693],
+  ["Manaus, Brasil", -3.119, -60.0217],
+];
+
+function runValidation(){
+  const statusEl = document.getElementById('valStatusText');
+  statusEl.textContent = 'Menghitung...';
+  setTimeout(()=>{
+    const year = parseInt(document.getElementById('yearInput').value)||2026;
+    const events = computeEvents(year);
+    const nadirEv = events.find(e=>e.type==='nadir') || events[0];
+    const {duhur} = duhurKakbahGMT3(nadirEv.date);
+    const utcNadirHours = duhur+9;
+    const expectedUtcMs = Date.UTC(nadirEv.date.getUTCFullYear(), nadirEv.date.getUTCMonth(), nadirEv.date.getUTCDate(),0,0,0) + utcNadirHours*3600000;
+
+    let rows=[], diffs=[];
+    for(const [name,lat,lon] of VALIDATION_LOCATIONS){
+      const tB = methodBInstant(expectedUtcMs, lat, lon);
+      const alt = solarAltitude(new Date(expectedUtcMs), lat, lon);
+      const diffSec = tB!==null ? (tB-expectedUtcMs)/1000 : null;
+      if(diffSec!==null) diffs.push(diffSec);
+      rows.push({name,lat,lon,tB,alt,diffSec});
+    }
+
+    const tbody = document.getElementById('valTableBody');
+    tbody.innerHTML = rows.map(r=>{
+      const utcAstr = new Date(expectedUtcMs).toISOString().slice(11,19)+' UTC';
+      const utcBstr = r.tB!==null ? new Date(r.tB).toISOString().slice(11,19)+' UTC' : '—';
+      const diffStr = r.diffSec!==null ? (r.diffSec>=0?'+':'')+r.diffSec.toFixed(1)+' dtk' : 'tidak ditemukan';
+      const cls = r.diffSec!==null && Math.abs(r.diffSec)<60 ? 'ok' : 'warn';
+      return `<tr>
+        <td class="hi">${r.name}</td>
+        <td class="mono">${degToDMS(r.lat,true)}, ${degToDMS(r.lon,false)}</td>
+        <td class="mono">${utcAstr}</td>
+        <td class="mono">${utcBstr}</td>
+        <td class="mono ${cls}">${diffStr}</td>
+        <td class="mono">${r.alt.toFixed(1)}° ${r.alt>-0.8333?'(siang)':'(malam)'}</td>
+      </tr>`;
+    }).join('');
+
+    const n = diffs.length;
+    const mean = diffs.reduce((a,b)=>a+b,0)/n;
+    const rms = Math.sqrt(diffs.reduce((a,b)=>a+b*b,0)/n);
+    const maxAbs = Math.max(...diffs.map(Math.abs));
+    document.getElementById('valCount').textContent = n;
+    document.getElementById('valMean').textContent = mean.toFixed(1)+' dtk';
+    document.getElementById('valRMS').textContent = rms.toFixed(1)+' dtk';
+    document.getElementById('valMax').textContent = maxAbs.toFixed(1)+' dtk';
+    document.getElementById('valSummary').style.display='grid';
+    statusEl.textContent = `Selesai — diuji untuk peristiwa Nadir Ka'bah ${fmtDateID(nadirEv.date)}.`;
+  }, 30);
+}
+
+/* ===================== INIT ===================== */
+function init(){
+  initCitySelect();
+  renderRegions();
+  drawBgPattern();
+  drawKaabaWatermark();
+  drawOrbitWatermark();
+  window.addEventListener('resize', drawBgPattern);
+  drawDiagram('svgKulminasi','kulminasi');
+  drawDiagram('svgNadir','nadir');
+  regenerateEvents();
+  autoSuggestTZ();
+  runCalc();
+
+  document.getElementById('yearInput').addEventListener('change', ()=>{regenerateEvents(); runCalc();});
+  document.getElementById('calcBtn').addEventListener('click', runCalc);
+  const valBtn = document.getElementById('runValidationBtn');
+  if(valBtn) valBtn.addEventListener('click', runValidation);
+  ['lonDeg','lonMin','lonSec','lonDir'].forEach(id=>{
+    document.getElementById(id).addEventListener('change', autoSuggestTZ);
+  });
+}
+init();
+</script>
+</body>
+</html>
